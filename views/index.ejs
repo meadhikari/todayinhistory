@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= title %></title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+	<style>
+		.scrollit {
+			overflow:auto;
+			height:300px;
+			
+		}
+	</style>
+</head>
+<body >
+	<div class="container">
+		<div class="row">
+			<h3>Notable Births that happened today</h3>
+
+			<div class="scrollit">
+
+				<table class="table table-hover">
+					
+					<tbody>
+
+						<% birth.forEach(function(entry){ %>
+						<tr>
+							<td><%- entry.innerHTML%></td>
+						</tr>
+						<% }) %>
+
+					</tbody>
+				</table>
+			</div>
+			<h3>Notable Deaths that happened today</h3>
+
+			<div class="scrollit">
+
+				<table class="table table-hover">
+					<% death.forEach(function(entry){ %>
+					<tr>
+						<td><%- entry.innerHTML%></td>
+					</tr>
+					<% }) %>
+
+				</tbody>
+			</table>
+		</div>
+		<h3>Notable Events that happened today</h3>
+
+		<div class="scrollit">
+
+			<table class="table table-hover">
+				<% even.forEach(function(entry){ %>
+				<tr>
+					<td><%- entry.innerHTML%></td>
+				</tr>
+				<% }) %>
+
+			</tbody>
+		</table>
+		</div>
+
+
+	</div>
+</div>
+<script >
+		/*function init(){
+			var arr = [], l = document.links;
+			for(var i=0; i<l.length; i++) {
+				l[i].setAttribute("target","_blank")
+			}
+		}*/
+
+		window.addEventListener("click", function(e) {
+			e = e || event;
+			var tag = e.target.nodeName || e.target.tagName;
+			tag = tag.toLowerCase();
+			if (tag === "a") {
+				e.preventDefault();
+				domain_part = e.target.href.split("/wiki/")[0]
+				e.target.href.replace(domain_part,"http://en.wikipedia.org")
+				//converting links and opening in new tab
+				modified_name = e.target.href.replace(domain_part,"http://en.wikipedia.org")
+				window.open(modified_name);
+			}
+		});
+	</script>
+</body>
+
+</html>
